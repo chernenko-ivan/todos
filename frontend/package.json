@@ -1,0 +1,10 @@
+{
+  "name": "frontend",
+  "version": "1.0.0",
+  "description": "todo web app.",
+  "main": "index.js",
+  "repository": "github.com/baphie/todo",
+  "author": "Ivan Chernenko",
+  "license": "MIT",
+  "private": false
+}
