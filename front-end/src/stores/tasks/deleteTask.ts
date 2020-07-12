@@ -1,7 +1,7 @@
 import * as _ from "lodash";
-import {DeleteTask, Task, TasksState} from "./@types";
+import {AddTask, DeleteTask, Task, TasksState} from "./@types";
 import {compose} from "redux";
-import {PayloadAction} from "@reduxjs/toolkit";
+import {CaseReducer, PayloadAction} from "@reduxjs/toolkit";
 
 // predicateTaskById returns false if task.id equals to id.
 const predicateTaskById = _.curry((id: number, task: Task) => task.id !== id);
@@ -18,7 +18,7 @@ const removeTask = (state: TasksState, payload: DeleteTask): Task[] => compose(
 )(state.tasks);
 
 // deleteTask returns new TaskState without task with id equals action.payload.id.
-export const deleteTask = (state: TasksState, action: PayloadAction<DeleteTask, 'tasks/DeleteTask'>): TasksState => ({
+export const deleteTask: CaseReducer<TasksState, PayloadAction<DeleteTask, 'tasks/DeleteTask'>> = (state, action) => ({
     ...state,
     tasks: removeTask(state, action.payload)
 });
