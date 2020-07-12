@@ -18,7 +18,7 @@ const removeTask = (state: TasksState, payload: DeleteTask): Task[] => compose(
 )(state.tasks);
 
 // deleteTask returns new TaskState without task with id equals action.payload.id.
-export const deleteTask: CaseReducer<TasksState, PayloadAction<DeleteTask, 'tasks/DeleteTask'>> = (state, action) => ({
+export const deleteTask: CaseReducer<TasksState, PayloadAction<DeleteTask>> = (state, action) => ({
     ...state,
     tasks: removeTask(state, action.payload)
 });

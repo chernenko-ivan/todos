@@ -4,7 +4,7 @@ import {compose} from "redux";
 import {setCreatedDate, setId, setIsDone} from "../utils/tasksHelper";
 
 // addTask returns new array with new Task object created from action.payload.
-export const addTask: CaseReducer<TasksState, PayloadAction<AddTask, 'tasks/addTask'>> = (state, action) => ({
+export const addTask: CaseReducer<TasksState, PayloadAction<AddTask>> = (state, action) => ({
     ...state,
     tasks: state.tasks.concat(createNewTask(action.payload))
 });
