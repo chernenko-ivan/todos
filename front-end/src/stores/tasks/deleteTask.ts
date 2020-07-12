@@ -1,5 +1,5 @@
 import * as _ from "lodash";
-import {DeleteTask, Task, TaskState} from "./@types";
+import {DeleteTask, Task, TasksState} from "./@types";
 import {compose} from "redux";
 import {PayloadAction} from "@reduxjs/toolkit";
 
@@ -13,12 +13,12 @@ const filterTask = _.curry((pred: (task: Task) => boolean, t: Task[]) => {
 });
 
 // removeTask returns new Task[] without Task with id equals to payload.id.
-const removeTask = (state: TaskState, payload: DeleteTask): Task[] => compose(
+const removeTask = (state: TasksState, payload: DeleteTask): Task[] => compose(
     filterTask(predicateTaskById(payload.id))
 )(state.tasks);
 
 // deleteTask returns new TaskState without task with id equals action.payload.id.
-export const deleteTask = (state: TaskState, action: PayloadAction<DeleteTask, 'tasks/DeleteTask'>): TaskState => ({
+export const deleteTask = (state: TasksState, action: PayloadAction<DeleteTask, 'tasks/DeleteTask'>): TasksState => ({
     ...state,
     tasks: removeTask(state, action.payload)
 });

@@ -6,7 +6,7 @@ export interface Task {
     isDone?: boolean;
 }
 
-export interface TaskState {
+export interface TasksState {
     tasks: Task[];
 }
 

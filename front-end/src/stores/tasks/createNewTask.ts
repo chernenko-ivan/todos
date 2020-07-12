@@ -1,10 +1,10 @@
-import {AddTask, Task, TaskState} from "./@types";
+import {AddTask, Task, TasksState} from "./@types";
 import {PayloadAction} from "@reduxjs/toolkit";
 import {compose} from "redux";
 import {setCreatedDate, setId, setIsDone} from "../utils/tasksHelper";
 
 // addTask returns new array with new Task object created from action.payload.
-export const addTask = (state: TaskState, action: PayloadAction<AddTask, 'tasks/addTask'>): TaskState => ({
+export const addTask = (state: TasksState, action: PayloadAction<AddTask, 'tasks/addTask'>): TasksState => ({
     ...state,
     tasks: state.tasks.concat(createNewTask(action.payload))
 });
