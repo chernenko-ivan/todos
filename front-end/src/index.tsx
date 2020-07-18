@@ -1,7 +1,7 @@
 import {render} from "react-dom";
 import {Root} from "./components/root";
 import * as React from "react";
-import {store, tasks} from "./stores/tasks/tasksReducer";
+import {store} from "./stores/createStore";
 
-render(<Root/>, document.getElementById('root'));
+render(<Root store={store}/>, document.getElementById('root'));
 

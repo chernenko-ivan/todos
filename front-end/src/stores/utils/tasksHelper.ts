@@ -1,8 +1,6 @@
 import * as _ from "lodash";
-import {Task} from "../tasks/@types";
+import {NewTaskPayload, Task, TaskPrepare} from "../lists/@types";
 
-export const setCreatedDate = (data: Task): Task => ({...data, createdDate: JSON.stringify(new Date())});
+export const setCreatedDate = (data: TaskPrepare): TaskPrepare => ({...data, createdDate: JSON.stringify(new Date())});
 
-export const setId = (data: Task): Task => ({...data, id: Date.now()});
-
-export const setIsDone = _.curry((value: boolean, data: Task) => ({...data, isDone: value}));
+export const setIsDone = _.curry((value: boolean, data: TaskPrepare): TaskPrepare => ({...data, isDone: value}));
