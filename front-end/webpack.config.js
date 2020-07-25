@@ -2,7 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
     // webpack will take the files from ./src/index
-    entry: './src/index',
+    entry: './src/index/index',
     // and output it into /dist as bundle.js
     output: {
         path: path.join(__dirname, '/dist'),
@@ -23,13 +23,41 @@ module.exports = {
                     loader: 'babel-loader'
                 },
             },
-            // css-loader to bundle all the css files into one file and style-loader to add all the styles  inside the style tag of the document
             {
-                test: /\.css$/,
-                use: ['style-loader', 'css-loader']
+                test: /\.less$/,
+                use: [
+                    {
+                        loader: 'style-loader',
+                    },
+                    {
+                        loader: 'css-loader',
+                    },
+                    {
+                        loader: 'less-loader',
+                        options: {
+                            lessOptions: {
+                                strictMath: true,
+                            },
+                        },
+                    },
+                ],
             },
             {
-                test: /\.(png|svg|jpg|jpeg|gif|ico)$/,
+                test: /\.svg$/,
+                use: [
+                    {
+                        loader: "babel-loader"
+                    },
+                    {
+                        loader: "react-svg-loader",
+                        options: {
+                            jsx: true // true outputs JSX tags
+                        }
+                    }
+                ]
+            },
+            {
+                test: /\.(png|jpg|jpeg|gif|ico)$/,
                 exclude: /node_modules/,
                 use: ['file-loader?name=[name].[ext]'] // ?name=[name].[ext] is only necessary to preserve the original file name
             }
